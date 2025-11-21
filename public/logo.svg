@@ -1,0 +1,37 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="bloodGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f43f5e;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#bloodGradient)" opacity="0.1"/>
+  
+  <!-- Main Heart Shape -->
+  <path d="M100 160 C100 160, 60 130, 60 100 C60 85, 70 75, 85 75 C92 75, 97 78, 100 83 C103 78, 108 75, 115 75 C130 75, 140 85, 140 100 C140 130, 100 160, 100 160 Z" 
+        fill="url(#bloodGradient)" 
+        filter="url(#glow)"
+        stroke="url(#bloodGradient)" 
+        stroke-width="2"/>
+  
+  <!-- Droplet Icon -->
+  <path d="M100 45 C100 45, 85 60, 85 72 C85 80, 91 86, 100 86 C109 86, 115 80, 115 72 C115 60, 100 45, 100 45 Z" 
+        fill="white" 
+        opacity="0.9"/>
+  
+  <!-- Plus Sign (Medical Cross) -->
+  <rect x="96" y="100" width="8" height="24" rx="2" fill="white" opacity="0.8"/>
+  <rect x="88" y="108" width="24" height="8" rx="2" fill="white" opacity="0.8"/>
+</svg>
+

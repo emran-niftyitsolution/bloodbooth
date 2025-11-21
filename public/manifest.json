@@ -1,0 +1,26 @@
+{
+  "name": "BloodBooth - Blood Donation Platform",
+  "short_name": "BloodBooth",
+  "description": "Join thousands of heroes who donate blood regularly. Your single donation can save up to three lives.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ef4444",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "medical", "social"],
+  "orientation": "portrait-primary"
+}
+
