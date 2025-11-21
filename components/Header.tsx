@@ -1,0 +1,282 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { Button, Dropdown } from 'antd';
+import type { MenuProps } from 'antd';
+import { 
+  Heart, 
+  Droplets,
+  LogOut,
+  User as UserIcon,
+  Settings,
+  Activity,
+  Menu,
+  X
+} from 'lucide-react';
+import { isAuthenticated, getCurrentUser, logout } from '@/lib/auth';
+
+export default function Header() {
+  const pathname = usePathname();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<{ email: string; name?: string; bloodType?: string } | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Check authentication status
+  useEffect(() => {
+    const checkAuth = () => {
+      const authenticated = isAuthenticated();
+      setIsLoggedIn(authenticated);
+      if (authenticated) {
+        setUser(getCurrentUser());
+      }
+    };
+
+    checkAuth();
+
+    // Listen for storage changes (login/logout in other tabs)
+    window.addEventListener('storage', checkAuth);
+    return () => window.removeEventListener('storage', checkAuth);
+  }, []);
+
+  // User dropdown menu
+  const userMenuItems: MenuProps['items'] = [
+    {
+      key: 'profile',
+      label: (
+        <div className="flex items-center gap-3 py-2">
+          <UserIcon className="w-4 h-4" />
+          <div>
+            <div className="font-semibold">{user?.name || 'User'}</div>
+            <div className="text-xs text-gray-500">{user?.email}</div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: 'dashboard',
+      label: 'Dashboard',
+      icon: <Activity className="w-4 h-4" />,
+    },
+    {
+      key: 'settings',
+      label: 'Settings',
+      icon: <Settings className="w-4 h-4" />,
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: 'logout',
+      label: 'Logout',
+      icon: <LogOut className="w-4 h-4" />,
+      danger: true,
+      onClick: logout,
+    },
+  ];
+
+  const navItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Find Donor', href: '/find-donor' },
+    { label: 'About', href: '/#about' },
+    { label: 'Process', href: '/#process' },
+  ];
+
+  return (
+    <>
+      <motion.nav 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-2xl border-b border-gray-100 shadow-sm"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <Link href="/">
+              <motion.div 
+                className="flex items-center gap-3 cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                <div className="relative">
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 blur-xl opacity-50"
+                    animate={{ opacity: [0.3, 0.6, 0.3] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                  <Droplets className="w-10 h-10 text-red-500 relative drop-shadow-lg" />
+                </div>
+                <span className="text-3xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
+                  BloodBooth
+                </span>
+              </motion.div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
+              {navItems.map((item) => (
+                <Link key={item.label} href={item.href}>
+                  <motion.span
+                    className={`text-base font-semibold relative group cursor-pointer transition-all ${
+                      pathname === item.href ? 'text-red-500' : 'text-gray-700 hover:text-red-500'
+                    }`}
+                    whileHover={{ y: -2 }}
+                  >
+                    {item.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-pink-500 group-hover:w-full transition-all duration-300" />
+                  </motion.span>
+                </Link>
+              ))}
+              
+              {/* Auth Buttons */}
+              {!isLoggedIn ? (
+                <>
+                  <Link href="/login">
+                    <motion.span 
+                      whileHover={{ y: -2 }} 
+                      className="text-gray-700 hover:text-red-500 transition-all font-semibold text-base cursor-pointer inline-block"
+                    >
+                      Sign In
+                    </motion.span>
+                  </Link>
+                  <Link href="/signup">
+                    <motion.div 
+                      whileHover={{ scale: 1.05 }} 
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                      className="relative group"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity" />
+                      <Button 
+                        type="primary"
+                        size="large"
+                        shape="round"
+                        icon={<Heart className="w-5 h-5" fill="white" />}
+                        className="relative h-14 px-9 font-bold text-base shadow-lg border-0"
+                        style={{
+                          background: 'linear-gradient(135deg, #dc2626 0%, #e11d48 50%, #ec4899 100%)',
+                          color: '#ffffff',
+                        }}
+                      >
+                        Sign Up
+                      </Button>
+                    </motion.div>
+                  </Link>
+                </>
+              ) : (
+                <div className="flex items-center gap-4">
+                  {user?.bloodType && (
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      className="px-4 py-2 bg-red-100 rounded-full"
+                    >
+                      <span className="text-red-600 font-bold text-sm">
+                        {user.bloodType}
+                      </span>
+                    </motion.div>
+                  )}
+                  <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="cursor-pointer"
+                    >
+                      <div className="flex items-center gap-3 px-4 py-2.5 bg-white rounded-full border-2 border-gray-200 hover:border-red-300 transition-colors shadow-sm">
+                        <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+                          <UserIcon className="w-4 h-4 text-white" />
+                        </div>
+                        <span className="font-semibold text-gray-700">
+                          {user?.name?.split(' ')[0] || 'User'}
+                        </span>
+                      </div>
+                    </motion.div>
+                  </Dropdown>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center gap-3">
+              {!isLoggedIn ? (
+                <Link href="/login">
+                  <Button
+                    type="primary"
+                    size="large"
+                    shape="round"
+                    className="font-bold border-0"
+                    style={{
+                      background: 'linear-gradient(135deg, #dc2626 0%, #e11d48 50%, #ec4899 100%)',
+                    }}
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+              ) : (
+                <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
+                  <div className="cursor-pointer">
+                    <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                      <UserIcon className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </Dropdown>
+              )}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 text-gray-700 hover:text-red-500 transition-colors"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-xl"
+          >
+            <div className="px-4 py-4 space-y-3">
+              {navItems.map((item) => (
+                <Link key={item.label} href={item.href}>
+                  <div
+                    className={`block px-4 py-3 rounded-xl font-semibold transition-all ${
+                      pathname === item.href
+                        ? 'bg-red-50 text-red-500'
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </div>
+                </Link>
+              ))}
+              {!isLoggedIn && (
+                <Link href="/signup">
+                  <div
+                    className="block px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-red-500 to-pink-500 text-white text-center"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Sign Up
+                  </div>
+                </Link>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </motion.nav>
+
+      {/* Spacer to prevent content from hiding under fixed header */}
+      <div className="h-20" />
+    </>
+  );
+}
+

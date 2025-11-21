@@ -5,7 +5,7 @@ import { Heart, Droplets } from 'lucide-react';
 
 export default function Loading() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-pink-50 to-orange-50">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-pink-50 to-orange-50 pt-20">
       <div className="text-center">
         <motion.div
           className="relative inline-block mb-8"

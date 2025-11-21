@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Button, Card, Statistic, Steps } from 'antd';
+import { Button, Statistic, Steps } from 'antd';
 import { 
   Heart, 
   Users, 
@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 
 export default function Home() {
+
   // Scroll progress
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -26,6 +27,7 @@ export default function Home() {
     damping: 30,
     restDelta: 0.001
   });
+
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -167,8 +169,8 @@ export default function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Hero Section with Integrated Navigation */}
-      <section className="relative min-h-screen px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col">
+      {/* Hero Section */}
+      <section className="relative min-h-screen px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col pt-20">
         {/* Animated background gradient */}
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-red-50 via-pink-50 to-orange-50"
@@ -194,85 +196,6 @@ export default function Home() {
           transition={{ duration: 15, repeat: Infinity }}
         />
 
-        {/* Navigation - Integrated in Hero */}
-        <motion.nav 
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-50 py-6"
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-center">
-              <motion.div 
-                className="flex items-center gap-3"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                <div className="relative">
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 blur-xl opacity-50"
-                    animate={{ opacity: [0.3, 0.6, 0.3] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
-                  <Droplets className="w-10 h-10 text-red-500 relative drop-shadow-lg" />
-                </div>
-                <span className="text-3xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
-                  BloodBooth
-                </span>
-              </motion.div>
-              
-              <div className="hidden md:flex items-center gap-8">
-                {['About', 'Process', 'Benefits', 'Contact'].map((item) => (
-                  <motion.a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="text-gray-700 hover:text-red-500 transition-all font-semibold text-base relative group"
-                    whileHover={{ y: -2 }}
-                  >
-                    {item}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-pink-500 group-hover:w-full transition-all duration-300" />
-                  </motion.a>
-                ))}
-                <motion.div 
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.96 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                  className="relative group"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity" />
-                  <Button 
-                    type="primary"
-                    size="large"
-                    shape="round"
-                    icon={<Heart className="w-5 h-5" fill="white" />}
-                    className="relative h-14 px-9 font-bold text-base shadow-lg border-0"
-                    style={{
-                      background: 'linear-gradient(135deg, #dc2626 0%, #e11d48 50%, #ec4899 100%)',
-                      color: '#ffffff',
-                    }}
-                  >
-                    Donate Now
-                  </Button>
-                </motion.div>
-              </div>
-
-              {/* Mobile Menu Button */}
-              <div className="md:hidden">
-                <Button
-                  type="text"
-                  size="large"
-                  icon={
-                    <div className="w-6 h-6 flex flex-col justify-center gap-1.5">
-                      <span className="w-full h-0.5 bg-gray-700 rounded" />
-                      <span className="w-full h-0.5 bg-gray-700 rounded" />
-                      <span className="w-full h-0.5 bg-gray-700 rounded" />
-                    </div>
-                  }
-                />
-              </div>
-            </div>
-          </div>
-        </motion.nav>
 
         {/* Hero Content */}
         <div className="max-w-7xl mx-auto relative z-10 flex-1 flex items-center">

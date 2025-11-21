@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-pink-50 to-orange-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-pink-50 to-orange-50 px-4 pt-20">
       <div className="text-center max-w-2xl">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
