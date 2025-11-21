@@ -60,7 +60,9 @@ export default function Header() {
     },
     {
       key: 'dashboard',
-      label: 'Dashboard',
+      label: (
+        <Link href="/dashboard">Dashboard</Link>
+      ),
       icon: <Activity className="w-4 h-4" />,
     },
     {
@@ -86,6 +88,11 @@ export default function Header() {
     { label: 'About', href: '/#about' },
     { label: 'Process', href: '/#process' },
   ];
+
+  // Add Dashboard to nav items if user is logged in
+  const displayNavItems = isLoggedIn 
+    ? [{ label: 'Dashboard', href: '/dashboard' }, ...navItems]
+    : navItems;
 
   return (
     <>
@@ -120,7 +127,7 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => (
+              {displayNavItems.map((item) => (
                 <Link key={item.label} href={item.href}>
                   <motion.span
                     className={`text-base font-semibold relative group cursor-pointer transition-all ${
@@ -245,7 +252,7 @@ export default function Header() {
             className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-xl"
           >
             <div className="px-4 py-4 space-y-3">
-              {navItems.map((item) => (
+              {displayNavItems.map((item) => (
                 <Link key={item.label} href={item.href}>
                   <div
                     className={`block px-4 py-3 rounded-xl font-semibold transition-all ${
