@@ -66,6 +66,13 @@ export default function Header() {
       icon: <FaChartLine className="w-4 h-4" />,
     },
     {
+      key: 'myprofile',
+      label: (
+        <Link href="/profile">My Profile</Link>
+      ),
+      icon: <FaUser className="w-4 h-4" />,
+    },
+    {
       key: 'settings',
       label: 'Settings',
       icon: <FaCog className="w-4 h-4" />,

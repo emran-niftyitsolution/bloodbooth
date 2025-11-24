@@ -10,8 +10,9 @@
     "check-db": "bun run scripts/check-db.ts"
   },
   "dependencies": {
-    "antd": "^5.29.1",
+    "antd": "6",
     "bcryptjs": "^3.0.3",
+    "dayjs": "^1.11.19",
     "framer-motion": "^12.23.24",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.20.1",

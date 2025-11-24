@@ -420,13 +420,15 @@ export default function DashboardPage() {
               </div>
 
               <div className="grid grid-cols-2 gap-2">
-                <Button
-                  block
-                  icon={<FaEdit className="w-4 h-4" />}
-                  className="rounded-xl font-semibold"
-                >
-                  Edit
-                </Button>
+                <Link href="/profile">
+                  <Button
+                    block
+                    icon={<FaEdit className="w-4 h-4" />}
+                    className="rounded-xl font-semibold"
+                  >
+                    Edit
+                  </Button>
+                </Link>
                 <Button
                   block
                   icon={<FaShareAlt className="w-4 h-4" />}
