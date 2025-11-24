@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from 'antd';
-import { Heart, RefreshCw, Home } from 'lucide-react';
+import { FaHeart, FaSyncAlt, FaHome } from 'react-icons/fa';
 import Link from 'next/link';
 
 export default function Error({
@@ -36,7 +36,7 @@ export default function Error({
               ease: "easeInOut"
             }}
           >
-            <Heart 
+            <FaHeart 
               className="w-32 h-32 text-red-500 mx-auto" 
               fill="#ef4444" 
               fillOpacity={0.2}
@@ -78,7 +78,7 @@ export default function Error({
                 type="primary"
                 size="large"
                 shape="round"
-                icon={<RefreshCw className="w-5 h-5" />}
+                icon={<FaSyncAlt className="w-5 h-5" />}
                 onClick={reset}
                 className="h-14 px-8 font-bold border-0 shadow-xl"
                 style={{
@@ -94,7 +94,7 @@ export default function Error({
                 <Button
                   size="large"
                   shape="round"
-                  icon={<Home className="w-5 h-5" />}
+                  icon={<FaHome className="w-5 h-5" />}
                   className="h-14 px-8 font-bold shadow-xl"
                   style={{
                     background: 'rgba(255, 255, 255, 0.9)',

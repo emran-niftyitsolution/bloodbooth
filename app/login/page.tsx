@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button, Input, Checkbox, Divider, message } from 'antd';
-import { Heart, Droplets, Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { FaHeart, FaTint, FaEnvelope, FaLock, FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -118,7 +118,7 @@ export default function LoginPage() {
                   animate={{ opacity: [0.3, 0.6, 0.3] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 />
-                <Droplets className="w-12 h-12 text-red-500 relative" />
+                <FaTint className="w-12 h-12 text-red-500 relative" />
               </div>
               <span className="text-4xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
                 BloodBooth
@@ -156,7 +156,7 @@ export default function LoginPage() {
           >
             <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border-2 border-white/50 p-8 md:p-12">
               <div className="lg:hidden flex items-center gap-3 mb-6 justify-center">
-                <Droplets className="w-8 h-8 text-red-500" />
+                <FaTint className="w-8 h-8 text-red-500" />
                 <span className="text-2xl font-black bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">
                   BloodBooth
                 </span>
@@ -174,7 +174,7 @@ export default function LoginPage() {
                   <Input
                     size="large"
                     placeholder="your.email@example.com"
-                    prefix={<Mail className="w-5 h-5 text-gray-400" />}
+                    prefix={<FaEnvelope className="w-5 h-5 text-gray-400" />}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     onKeyPress={handleKeyPress}
@@ -192,14 +192,14 @@ export default function LoginPage() {
                     size="large"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Enter your password"
-                    prefix={<Lock className="w-5 h-5 text-gray-400" />}
+                    prefix={<FaLock className="w-5 h-5 text-gray-400" />}
                     suffix={
                       <button
                         onClick={() => setShowPassword(!showPassword)}
                         className="text-gray-400 hover:text-gray-600"
                         disabled={loading}
                       >
-                        {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                        {showPassword ? <FaEyeSlash className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
                       </button>
                     }
                     value={password}
@@ -234,7 +234,7 @@ export default function LoginPage() {
                     type="primary"
                     size="large"
                     block
-                    icon={loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Heart className="w-5 h-5" fill="white" />}
+                    icon={loading ? <FaSpinner className="w-5 h-5 animate-spin" /> : <FaHeart className="w-5 h-5" fill="white" />}
                     onClick={handleLogin}
                     loading={loading}
                     disabled={loading}

@@ -4,19 +4,25 @@ import Image from 'next/image';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Button, Statistic, Steps } from 'antd';
 import { 
-  Heart, 
-  Users, 
-  Activity, 
-  MapPin, 
-  Clock, 
-  Award,
-  Droplets,
-  CheckCircle2,
-  ArrowRight,
-  Calendar,
-  UserCheck,
-  FileHeart
-} from 'lucide-react';
+  FaHeart, 
+  FaUsers, 
+  FaChartLine, 
+  FaMapMarkerAlt, 
+  FaClock, 
+  FaAward,
+  FaTint,
+  FaCheckCircle,
+  FaArrowRight,
+  FaCalendarAlt,
+  FaUserCheck,
+  FaHeartbeat,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn
+} from 'react-icons/fa';
 
 export default function Home() {
 
@@ -43,10 +49,10 @@ export default function Home() {
   };
 
   const stats = [
-    { value: 50000, suffix: '+', title: 'Lives Saved', icon: Heart, color: '#ff4d4f' },
-    { value: 15000, suffix: '+', title: 'Active Donors', icon: Users, color: '#1890ff' },
-    { value: 200, suffix: '+', title: 'Blood Camps', icon: MapPin, color: '#52c41a' },
-    { value: 24, suffix: '/7', title: 'Available', icon: Clock, color: '#faad14' }
+    { value: 50000, suffix: '+', title: 'Lives Saved', icon: FaHeart, color: '#ff4d4f' },
+    { value: 15000, suffix: '+', title: 'Active Donors', icon: FaUsers, color: '#1890ff' },
+    { value: 200, suffix: '+', title: 'Blood Camps', icon: FaMapMarkerAlt, color: '#52c41a' },
+    { value: 24, suffix: '/7', title: 'Available', icon: FaClock, color: '#faad14' }
   ];
 
   const bloodTypes = [
@@ -62,25 +68,25 @@ export default function Home() {
 
   const benefits = [
     {
-      icon: Heart,
+      icon: FaHeart,
       title: 'Save Lives',
       description: 'One donation can save up to three lives',
       image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&q=80'
     },
     {
-      icon: Activity,
+      icon: FaChartLine,
       title: 'Health Check',
       description: 'Free health screening with every donation',
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80'
     },
     {
-      icon: Award,
+      icon: FaAward,
       title: 'Recognition',
       description: 'Certificates and appreciation for regular donors',
       image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&q=80'
     },
     {
-      icon: Users,
+      icon: FaUsers,
       title: 'Community',
       description: 'Join a network of life-saving heroes',
       image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80'
@@ -154,7 +160,7 @@ export default function Home() {
             type="primary"
             size="large"
             shape="circle"
-            icon={<Heart className="w-7 h-7" fill="white" />}
+            icon={<FaHeart className="w-7 h-7" />}
             className="relative w-16 h-16 flex items-center justify-center border-0 shadow-xl"
             style={{ 
               background: 'linear-gradient(135deg, #dc2626 0%, #e11d48 50%, #ec4899 100%)',
@@ -259,7 +265,7 @@ export default function Home() {
                     type="primary"
                     size="large"
                     shape="round"
-                    icon={<Heart className="w-6 h-6" fill="white" />}
+                    icon={<FaHeart className="w-6 h-6" />}
                     className="relative h-16 px-10 text-lg font-bold shadow-xl border-0 overflow-hidden"
                     style={{
                       background: 'linear-gradient(135deg, #dc2626 0%, #e11d48 50%, #ec4899 100%)',
@@ -284,7 +290,7 @@ export default function Home() {
                   <Button 
                     size="large"
                     shape="round"
-                    icon={<Calendar className="w-6 h-6" />}
+                    icon={<FaCalendarAlt className="w-6 h-6" />}
                     className="relative h-16 px-10 text-lg font-bold shadow-lg group-hover:shadow-xl transition-shadow"
                     style={{
                       background: '#ffffff',
@@ -332,7 +338,7 @@ export default function Home() {
                     transition={{ duration: 3, repeat: Infinity }}
                     className="bg-white/10 backdrop-blur-xl p-12 rounded-full border border-white/20 shadow-2xl"
                   >
-                    <Heart className="w-40 h-40 text-white drop-shadow-2xl" strokeWidth={1.5} fill="white" fillOpacity={0.4} />
+                    <FaHeart className="w-40 h-40 text-white drop-shadow-2xl opacity-40" />
                   </motion.div>
                 </div>
               </motion.div>
@@ -358,7 +364,7 @@ export default function Home() {
               >
                 <div className="flex items-center gap-3">
                   <div className="p-3 bg-gradient-to-br from-red-500 to-pink-500 rounded-xl">
-                    <Activity className="w-6 h-6 text-white" />
+                    <FaChartLine className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-gray-900">98%</div>
@@ -475,7 +481,7 @@ export default function Home() {
                   type="primary"
                   size="large"
                   shape="round"
-                  icon={<Heart className="w-7 h-7" fill="#dc2626" />}
+                  icon={<FaHeart className="w-7 h-7 text-[#dc2626]" />}
                   className="relative h-[72px] px-12 text-xl font-bold border-0 shadow-2xl"
                   style={{
                     background: '#ffffff',
@@ -495,7 +501,7 @@ export default function Home() {
                 <Button 
                   size="large"
                   shape="round"
-                  icon={<MapPin className="w-7 h-7" />}
+                  icon={<FaMapMarkerAlt className="w-7 h-7" />}
                   className="relative h-[72px] px-12 text-xl font-bold shadow-xl"
                   style={{
                     background: 'rgba(255, 255, 255, 0.2)',
@@ -642,30 +648,30 @@ export default function Home() {
               {
                 step: '01',
                 title: 'Register Online',
-                description: 'Quick 2-minute registration with your basic details and health information',
-                icon: UserCheck,
-                color: '#ef4444'
+              description: 'Quick 2-minute registration with your basic details and health information',
+              icon: FaUserCheck,
+              color: '#ef4444'
               },
               {
                 step: '02',
                 title: 'Health Screening',
-                description: 'Free comprehensive health check-up and blood type testing by professionals',
-                icon: FileHeart,
-                color: '#ec4899'
+              description: 'Free comprehensive health check-up and blood type testing by professionals',
+              icon: FaHeartbeat,
+              color: '#ec4899'
               },
               {
                 step: '03',
                 title: 'Donate Blood',
-                description: 'Safe 10-minute donation process with trained medical staff',
-                icon: Droplets,
-                color: '#f43f5e'
+              description: 'Safe 10-minute donation process with trained medical staff',
+              icon: FaTint,
+              color: '#f43f5e'
               },
               {
                 step: '04',
                 title: 'Rest & Refresh',
-                description: 'Enjoy refreshments, receive your certificate and feel proud',
-                icon: CheckCircle2,
-                color: '#fb7185'
+              description: 'Enjoy refreshments, receive your certificate and feel proud',
+              icon: FaCheckCircle,
+              color: '#fb7185'
               }
             ].map((item, index) => {
               const Icon = item.icon;
@@ -718,7 +724,7 @@ export default function Home() {
                         style={{ color: item.color }}
                         whileHover={{ x: 5 }}
                       >
-                        Learn more <ArrowRight className="w-4 h-4" />
+                        Learn more <FaArrowRight className="w-4 h-4" />
                       </motion.div>
                     </div>
                   </div>
@@ -792,7 +798,7 @@ export default function Home() {
                       <h4 className="font-bold text-lg text-gray-900">{testimonial.name}</h4>
                       <p className="text-sm text-gray-500 mb-2">{testimonial.role}</p>
                       <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 rounded-full">
-                        <Heart className="w-3 h-3 text-red-500 fill-red-500" />
+                        <FaHeart className="w-3 h-3 text-red-500" />
                         <span className="text-xs text-red-600 font-bold">
                           {testimonial.donations} donations
                         </span>
@@ -935,7 +941,7 @@ export default function Home() {
                         className="mt-4 inline-flex items-center gap-2 text-red-500 font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity"
                         whileHover={{ x: 5 }}
                       >
-                        Learn more <ArrowRight className="w-4 h-4" />
+                        Learn more <FaArrowRight className="w-4 h-4" />
                       </motion.div>
                     </div>
                   </div>
@@ -978,7 +984,7 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-red-600/90 to-red-600/20 group-hover:from-red-700/90 transition-colors" />
               <div className="absolute inset-0 flex flex-col justify-end p-8">
-                <Heart className="w-16 h-16 text-white mb-4" />
+                <FaHeart className="w-16 h-16 text-white mb-4" />
                 <h3 className="text-3xl font-bold text-white mb-3">Donate Blood</h3>
                 <p className="text-white/90 text-lg mb-4">
                   Regular donations help maintain a stable blood supply for emergencies
@@ -994,7 +1000,7 @@ export default function Home() {
                     type="primary"
                     size="large"
                     shape="round"
-                    icon={<ArrowRight className="w-5 h-5" />}
+                    icon={<FaArrowRight className="w-5 h-5" />}
                     className="relative h-14 px-8 text-base font-bold border-0 shadow-lg"
                     style={{
                       background: '#ffffff',
@@ -1022,7 +1028,7 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-pink-600/90 to-pink-600/20 group-hover:from-pink-700/90 transition-colors" />
               <div className="absolute inset-0 flex flex-col justify-end p-8">
-                <Users className="w-16 h-16 text-white mb-4" />
+                <FaUsers className="w-16 h-16 text-white mb-4" />
                 <h3 className="text-3xl font-bold text-white mb-3">Organize a Drive</h3>
                 <p className="text-white/90 text-lg mb-4">
                   Host a blood donation event at your workplace or community
@@ -1038,7 +1044,7 @@ export default function Home() {
                     type="primary"
                     size="large"
                     shape="round"
-                    icon={<ArrowRight className="w-5 h-5" />}
+                    icon={<FaArrowRight className="w-5 h-5" />}
                     className="relative h-14 px-8 text-base font-bold border-0 shadow-lg"
                     style={{
                       background: '#ffffff',
@@ -1095,7 +1101,7 @@ export default function Home() {
               className="inline-block mb-8"
             >
               <div className="p-6 bg-white/20 backdrop-blur-sm rounded-3xl border border-white/30">
-                <Heart className="w-20 h-20 text-white" fill="white" fillOpacity={0.3} />
+                <FaHeart className="w-20 h-20 text-white opacity-30" />
               </div>
             </motion.div>
             
@@ -1118,7 +1124,7 @@ export default function Home() {
                   type="primary"
                   size="large"
                   shape="round"
-                  icon={<Heart className="w-7 h-7" fill="white" />}
+                  icon={<FaHeart className="w-7 h-7" />}
                   className="relative h-[72px] px-14 text-xl font-bold border-0 shadow-2xl"
                   style={{
                     background: '#ffffff',
@@ -1138,7 +1144,7 @@ export default function Home() {
                 <Button 
                   size="large"
                   shape="round"
-                  icon={<MapPin className="w-7 h-7" />}
+                  icon={<FaMapMarkerAlt className="w-7 h-7" />}
                   className="relative h-[72px] px-14 text-xl font-bold shadow-xl"
                   style={{
                     background: 'rgba(255, 255, 255, 0.2)',
@@ -1169,7 +1175,7 @@ export default function Home() {
               >
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 blur-lg opacity-50" />
-                  <Droplets className="w-8 h-8 text-red-500 relative" />
+                  <FaTint className="w-8 h-8 text-red-500 relative" />
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
                   BloodBooth
@@ -1179,15 +1185,34 @@ export default function Home() {
                 Connecting donors with those in need, saving lives every day through compassion and care.
               </p>
               <div className="flex gap-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.1, y: -3 }}
-                    className="w-10 h-10 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/10 cursor-pointer hover:bg-red-500/20 hover:border-red-500/30 transition-all"
-                  >
-                    <div className="w-4 h-4 bg-gray-600 rounded-full" />
-                  </motion.div>
-                ))}
+                <motion.a
+                  href="#"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  className="w-10 h-10 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/10 cursor-pointer hover:bg-red-500/20 hover:border-red-500/30 transition-all"
+                >
+                  <FaFacebookF className="w-4 h-4 text-gray-400 hover:text-red-400 transition-colors" />
+                </motion.a>
+                <motion.a
+                  href="#"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  className="w-10 h-10 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/10 cursor-pointer hover:bg-red-500/20 hover:border-red-500/30 transition-all"
+                >
+                  <FaTwitter className="w-4 h-4 text-gray-400 hover:text-red-400 transition-colors" />
+                </motion.a>
+                <motion.a
+                  href="#"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  className="w-10 h-10 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/10 cursor-pointer hover:bg-red-500/20 hover:border-red-500/30 transition-all"
+                >
+                  <FaInstagram className="w-4 h-4 text-gray-400 hover:text-red-400 transition-colors" />
+                </motion.a>
+                <motion.a
+                  href="#"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  className="w-10 h-10 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/10 cursor-pointer hover:bg-red-500/20 hover:border-red-500/30 transition-all"
+                >
+                  <FaLinkedinIn className="w-4 h-4 text-gray-400 hover:text-red-400 transition-colors" />
+                </motion.a>
               </div>
             </div>
             <div>
@@ -1221,25 +1246,25 @@ export default function Home() {
               <ul className="space-y-4 text-gray-400">
                 <li className="flex items-center gap-3">
                   <div className="p-2 bg-red-500/10 rounded-lg">
-                    <span>📞</span>
+                    <FaPhoneAlt className="w-5 h-5 text-red-500" />
                   </div>
                   <span>1-800-BLOOD</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="p-2 bg-red-500/10 rounded-lg">
-                    <span>📧</span>
+                    <FaEnvelope className="w-5 h-5 text-red-500" />
                   </div>
                   <span>info@bloodbank.org</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="p-2 bg-red-500/10 rounded-lg">
-                    <span>📍</span>
+                    <FaMapMarkerAlt className="w-5 h-5 text-red-500" />
                   </div>
                   <span>123 Life Street</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="p-2 bg-red-500/10 rounded-lg">
-                    <span>🕐</span>
+                    <FaClock className="w-5 h-5 text-red-500" />
                   </div>
                   <div>
                     <span className="font-semibold text-red-400">24/7</span> Available

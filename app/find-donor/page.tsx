@@ -3,20 +3,20 @@
 import { Badge, Button, Empty, Input, Select, Slider, Switch } from "antd";
 import { motion } from "framer-motion";
 import {
-  Award,
-  Calendar,
-  Droplets,
-  Heart,
-  Mail,
-  MapPin,
-  Navigation,
-  Phone,
-  RefreshCw,
-  Search,
-  SlidersHorizontal,
-  Star,
-  Users,
-} from "lucide-react";
+  FaAward,
+  FaCalendarAlt,
+  FaTint,
+  FaHeart,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaLocationArrow,
+  FaPhone,
+  FaSyncAlt,
+  FaSearch,
+  FaSlidersH,
+  FaStar,
+  FaUsers,
+} from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -232,7 +232,7 @@ export default function FindDonorPage() {
               </div>
               <div className="flex items-center gap-4 mb-6">
                 <div className="bg-white/20 backdrop-blur-xl p-4 rounded-2xl">
-                  <Droplets className="w-12 h-12" />
+                  <FaTint className="w-12 h-12" />
                 </div>
                 <div>
                   <h1 className="text-5xl md:text-6xl font-black mb-2">
@@ -305,7 +305,7 @@ export default function FindDonorPage() {
                 >
                   <div className="flex items-center gap-4">
                     <div className="bg-gradient-to-br from-red-500 to-pink-500 p-3 rounded-xl">
-                      <Heart className="w-8 h-8 text-white fill-white" />
+                      <FaHeart className="w-8 h-8 text-white" />
                     </div>
                     <div className="flex-1">
                       <div className="text-gray-900 font-black text-lg mb-1">
@@ -344,7 +344,7 @@ export default function FindDonorPage() {
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute -top-4 -left-4 bg-white/20 backdrop-blur-xl p-4 rounded-2xl border border-white/30"
               >
-                <Users className="w-8 h-8 text-white" />
+                <FaUsers className="w-8 h-8 text-white" />
               </motion.div>
               <motion.div
                 animate={{
@@ -353,7 +353,7 @@ export default function FindDonorPage() {
                 transition={{ duration: 4, repeat: Infinity }}
                 className="absolute -bottom-4 -right-4 bg-white/20 backdrop-blur-xl p-4 rounded-2xl border border-white/30"
               >
-                <Droplets className="w-8 h-8 text-white" />
+                <FaTint className="w-8 h-8 text-white" />
               </motion.div>
             </motion.div>
           </div>
@@ -374,7 +374,7 @@ export default function FindDonorPage() {
               <div className="bg-white/70 backdrop-blur-xl rounded-xl shadow-xl border-2 border-white/50 p-6">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="bg-gradient-to-br from-red-500 to-pink-500 p-2.5 rounded-xl">
-                    <SlidersHorizontal className="w-5 h-5 text-white" />
+                    <FaSlidersH className="w-5 h-5 text-white" />
                   </div>
                   <h2 className="text-2xl font-black text-gray-900">Filters</h2>
                 </div>
@@ -388,7 +388,7 @@ export default function FindDonorPage() {
                     <Input
                       size="large"
                       placeholder="Name or location..."
-                      prefix={<Search className="w-4 h-4 text-gray-400" />}
+                      prefix={<FaSearch className="w-4 h-4 text-gray-400" />}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="rounded-xl"
@@ -412,7 +412,7 @@ export default function FindDonorPage() {
                         (type) => (
                           <Option key={type} value={type}>
                             <div className="flex items-center gap-2">
-                              <Droplets className="w-4 h-4 text-red-500" />
+                              <FaTint className="w-4 h-4 text-red-500" />
                               <span className="font-semibold">{type}</span>
                             </div>
                           </Option>
@@ -443,7 +443,7 @@ export default function FindDonorPage() {
                       ].map((city) => (
                         <Option key={city} value={city}>
                           <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-blue-500" />
+                            <FaMapMarkerAlt className="w-4 h-4 text-blue-500" />
                             <span className="font-semibold">{city}</span>
                           </div>
                         </Option>
@@ -471,7 +471,7 @@ export default function FindDonorPage() {
                   <div className="flex items-center justify-between bg-gray-50 rounded-xl p-4">
                     <div className="flex items-center gap-3">
                       <div className="bg-green-100 p-2 rounded-lg">
-                        <Heart className="w-4 h-4 text-green-600" />
+                        <FaHeart className="w-4 h-4 text-green-600" />
                       </div>
                       <div>
                         <div className="text-sm font-bold text-gray-900">
@@ -499,7 +499,7 @@ export default function FindDonorPage() {
                   <Button
                     size="large"
                     block
-                    icon={<RefreshCw className="w-4 h-4" />}
+                    icon={<FaSyncAlt className="w-4 h-4" />}
                     onClick={handleReset}
                     className="rounded-xl font-bold h-12"
                   >
@@ -523,7 +523,7 @@ export default function FindDonorPage() {
               {/* Quick Stats */}
               <div className="bg-gradient-to-br from-red-500 to-pink-500 rounded-xl p-6 text-white">
                 <div className="flex items-center gap-3 mb-4">
-                  <Award className="w-6 h-6" />
+                  <FaAward className="w-6 h-6" />
                   <h3 className="font-bold text-lg">Quick Stats</h3>
                 </div>
                 <div className="space-y-3">
@@ -613,7 +613,7 @@ export default function FindDonorPage() {
                           {/* Distance Badge */}
                           <div className="absolute bottom-4 right-4">
                             <div className="bg-blue-500/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                              <Navigation className="w-3.5 h-3.5 text-white" />
+                              <FaLocationArrow className="w-3.5 h-3.5 text-white" />
                               <span className="text-white text-xs font-bold">
                                 {donor.distance}
                               </span>
@@ -629,7 +629,7 @@ export default function FindDonorPage() {
                             {donor.name}
                           </h3>
                           <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded-lg">
-                            <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                            <FaStar className="w-4 h-4 text-yellow-500" />
                             <span className="text-sm font-bold text-yellow-700">
                               {donor.rating}
                             </span>
@@ -638,7 +638,7 @@ export default function FindDonorPage() {
 
                         {/* Location */}
                         <div className="flex items-center gap-2 text-gray-600 mb-4">
-                          <MapPin className="w-4 h-4 text-red-500" />
+                          <FaMapMarkerAlt className="w-4 h-4 text-red-500" />
                           <span className="text-sm font-medium">
                             {donor.location}
                           </span>
@@ -647,7 +647,7 @@ export default function FindDonorPage() {
                         {/* Stats */}
                         <div className="grid grid-cols-2 gap-3 mb-5">
                           <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-4 text-center border border-red-100">
-                            <Heart className="w-5 h-5 text-red-500 mx-auto mb-2 fill-red-500" />
+                            <FaHeart className="w-5 h-5 text-red-500 mx-auto mb-2" />
                             <div className="text-2xl font-black text-red-500">
                               {donor.totalDonations}
                             </div>
@@ -656,7 +656,7 @@ export default function FindDonorPage() {
                             </div>
                           </div>
                           <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-4 text-center border border-blue-100">
-                            <Calendar className="w-5 h-5 text-blue-500 mx-auto mb-2" />
+                            <FaCalendarAlt className="w-5 h-5 text-blue-500 mx-auto mb-2" />
                             <div className="text-xs font-bold text-blue-500 mt-1">
                               {donor.lastDonation}
                             </div>
@@ -677,7 +677,7 @@ export default function FindDonorPage() {
                               type="primary"
                               size="large"
                               block
-                              icon={<Phone className="w-4 h-4" />}
+                              icon={<FaPhone className="w-4 h-4" />}
                               className="rounded-xl font-bold border-0 h-12 shadow-lg"
                               disabled={!donor.available}
                               style={{
@@ -695,7 +695,7 @@ export default function FindDonorPage() {
                           >
                             <Button
                               size="large"
-                              icon={<Mail className="w-4 h-4" />}
+                              icon={<FaEnvelope className="w-4 h-4" />}
                               disabled={!donor.available}
                               className="rounded-xl font-bold h-12 w-12 flex items-center justify-center p-0"
                             />
@@ -734,7 +734,7 @@ export default function FindDonorPage() {
                         type="primary"
                         size="large"
                         shape="round"
-                        icon={<RefreshCw className="w-5 h-5" />}
+                        icon={<FaSyncAlt className="w-5 h-5" />}
                         onClick={handleReset}
                         className="font-bold border-0 h-14 px-10 shadow-xl"
                         style={{
@@ -777,7 +777,7 @@ export default function FindDonorPage() {
                   transition={{ type: "spring", stiffness: 200 }}
                   className="inline-block bg-white/20 backdrop-blur-sm p-4 rounded-2xl mb-6"
                 >
-                  <Heart className="w-12 h-12 fill-white" />
+                  <FaHeart className="w-12 h-12 text-white" />
                 </motion.div>
                 <h2 className="text-4xl md:text-5xl font-black mb-4">
                   Become a Life Saver
@@ -795,7 +795,7 @@ export default function FindDonorPage() {
                       type="default"
                       size="large"
                       shape="round"
-                      icon={<Droplets className="w-5 h-5" />}
+                      icon={<FaTint className="w-5 h-5" />}
                       className="h-16 px-12 font-black text-lg bg-white text-red-500 hover:bg-gray-50 border-0 shadow-2xl"
                     >
                       Register as Donor

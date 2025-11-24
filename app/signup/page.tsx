@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button, Input, Select, DatePicker, Checkbox, message } from 'antd';
-import { Heart, Droplets, Mail, Lock, User, Phone, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { FaHeart, FaTint, FaEnvelope, FaLock, FaUser, FaPhone, FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -147,7 +147,7 @@ export default function SignupPage() {
                   animate={{ opacity: [0.3, 0.6, 0.3] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 />
-                <Droplets className="w-12 h-12 text-red-500 relative" />
+                <FaTint className="w-12 h-12 text-red-500 relative" />
               </div>
               <span className="text-4xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
                 BloodBooth
@@ -198,7 +198,7 @@ export default function SignupPage() {
           >
             <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border-2 border-white/50 p-8 md:p-12 max-h-[90vh] overflow-y-auto">
               <div className="lg:hidden flex items-center gap-3 mb-6 justify-center">
-                <Droplets className="w-8 h-8 text-red-500" />
+                <FaTint className="w-8 h-8 text-red-500" />
                 <span className="text-2xl font-black bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">
                   BloodBooth
                 </span>
@@ -216,7 +216,7 @@ export default function SignupPage() {
                   <Input
                     size="large"
                     placeholder="John Doe"
-                    prefix={<User className="w-5 h-5 text-gray-400" />}
+                    prefix={<FaUser className="w-5 h-5 text-gray-400" />}
                     value={formData.fullName}
                     onChange={(e) => updateField('fullName', e.target.value)}
                     className="h-12 rounded-xl"
@@ -231,7 +231,7 @@ export default function SignupPage() {
                   <Input
                     size="large"
                     placeholder="your.email@example.com"
-                    prefix={<Mail className="w-5 h-5 text-gray-400" />}
+                    prefix={<FaEnvelope className="w-5 h-5 text-gray-400" />}
                     value={formData.email}
                     onChange={(e) => updateField('email', e.target.value)}
                     className="h-12 rounded-xl"
@@ -246,7 +246,7 @@ export default function SignupPage() {
                   <Input
                     size="large"
                     placeholder="+1 (555) 000-0000"
-                    prefix={<Phone className="w-5 h-5 text-gray-400" />}
+                    prefix={<FaPhone className="w-5 h-5 text-gray-400" />}
                     value={formData.phone}
                     onChange={(e) => updateField('phone', e.target.value)}
                     className="h-12 rounded-xl"
@@ -295,13 +295,13 @@ export default function SignupPage() {
                     size="large"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Create a strong password"
-                    prefix={<Lock className="w-5 h-5 text-gray-400" />}
+                    prefix={<FaLock className="w-5 h-5 text-gray-400" />}
                     suffix={
                       <button
                         onClick={() => setShowPassword(!showPassword)}
                         className="text-gray-400 hover:text-gray-600"
                       >
-                        {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                        {showPassword ? <FaEyeOff className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
                       </button>
                     }
                     value={formData.password}
@@ -319,13 +319,13 @@ export default function SignupPage() {
                     size="large"
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder="Re-enter your password"
-                    prefix={<Lock className="w-5 h-5 text-gray-400" />}
+                    prefix={<FaLock className="w-5 h-5 text-gray-400" />}
                     suffix={
                       <button
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                         className="text-gray-400 hover:text-gray-600"
                       >
-                        {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                        {showConfirmPassword ? <FaEyeOff className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
                       </button>
                     }
                     value={formData.confirmPassword}
@@ -362,7 +362,7 @@ export default function SignupPage() {
                     type="primary"
                     size="large"
                     block
-                    icon={loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Heart className="w-5 h-5" fill="white" />}
+                    icon={loading ? <FaSpinner className="w-5 h-5 animate-spin" /> : <FaHeart className="w-5 h-5" fill="white" />}
                     onClick={handleSignup}
                     loading={loading}
                     disabled={loading}

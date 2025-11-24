@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button, Input, Result } from 'antd';
-import { Heart, Droplets, Mail, ArrowLeft, Send } from 'lucide-react';
+import { FaHeart, FaTint, FaEnvelope, FaArrowLeft, FaPaperPlane } from 'react-icons/fa';
 import Link from 'next/link';
 
 export default function ForgotPasswordPage() {
@@ -59,7 +59,7 @@ export default function ForgotPasswordPage() {
                   animate={{ opacity: [0.3, 0.6, 0.3] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 />
-                <Droplets className="w-10 h-10 text-red-500 relative" />
+                <FaTint className="w-10 h-10 text-red-500 relative" />
               </div>
               <span className="text-3xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
                 BloodBooth
@@ -76,7 +76,7 @@ export default function ForgotPasswordPage() {
                     transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                     className="inline-block p-4 bg-red-100 rounded-full mb-4"
                   >
-                    <Mail className="w-8 h-8 text-red-500" />
+                    <FaEnvelope className="w-8 h-8 text-red-500" />
                   </motion.div>
                   <h2 className="text-3xl font-bold text-gray-900 mb-2">
                     Forgot Password?
@@ -95,7 +95,7 @@ export default function ForgotPasswordPage() {
                     <Input
                       size="large"
                       placeholder="your.email@example.com"
-                      prefix={<Mail className="w-5 h-5 text-gray-400" />}
+                      prefix={<FaEnvelope className="w-5 h-5 text-gray-400" />}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="h-12 rounded-xl"
@@ -113,7 +113,7 @@ export default function ForgotPasswordPage() {
                       type="primary"
                       size="large"
                       block
-                      icon={<Send className="w-5 h-5" />}
+                      icon={<FaPaperPlane className="w-5 h-5" />}
                       onClick={handleSubmit}
                       className="relative h-12 font-bold text-base rounded-xl border-0"
                       style={{
@@ -130,7 +130,7 @@ export default function ForgotPasswordPage() {
                       whileHover={{ x: -5 }}
                       className="flex items-center justify-center gap-2 text-gray-600 hover:text-red-500 transition-colors"
                     >
-                      <ArrowLeft className="w-4 h-4" />
+                      <FaArrowLeft className="w-4 h-4" />
                       <span className="font-semibold">Back to Sign In</span>
                     </motion.div>
                   </Link>
@@ -147,7 +147,7 @@ export default function ForgotPasswordPage() {
                       transition={{ type: "spring", stiffness: 200 }}
                     >
                       <div className="inline-block p-6 bg-green-100 rounded-full">
-                        <Send className="w-12 h-12 text-green-500" />
+                        <FaPaperPlane className="w-12 h-12 text-green-500" />
                       </div>
                     </motion.div>
                   }
@@ -184,7 +184,7 @@ export default function ForgotPasswordPage() {
                     <Button
                       size="large"
                       block
-                      icon={<ArrowLeft className="w-5 h-5" />}
+                      icon={<FaArrowLeft className="w-5 h-5" />}
                       className="h-12 font-bold text-base rounded-xl"
                     >
                       Back to Sign In

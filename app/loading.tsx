@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Heart, Droplets } from 'lucide-react';
+import { FaHeart, FaTint } from 'react-icons/fa';
 
 export default function Loading() {
   return (
@@ -28,11 +28,8 @@ export default function Loading() {
               repeat: Infinity
             }}
           />
-          <Heart 
-            className="w-24 h-24 text-red-500 relative" 
-            fill="#ef4444" 
-            fillOpacity={0.3}
-            strokeWidth={2}
+          <FaHeart 
+            className="w-24 h-24 text-red-500 relative opacity-70" 
           />
         </motion.div>
 
@@ -42,7 +39,7 @@ export default function Loading() {
           transition={{ delay: 0.3 }}
         >
           <div className="flex items-center gap-3 justify-center mb-4">
-            <Droplets className="w-8 h-8 text-red-500" />
+            <FaTint className="w-8 h-8 text-red-500" />
             <h2 className="text-3xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
               BloodBooth
             </h2>

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Button } from 'antd';
-import { Heart, Home, ArrowLeft } from 'lucide-react';
+import { FaHeart, FaHome, FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 
 export default function NotFound() {
@@ -26,7 +26,7 @@ export default function NotFound() {
             }}
             className="inline-block"
           >
-            <Heart 
+            <FaHeart 
               className="w-32 h-32 text-red-500 mx-auto" 
               fill="#ef4444" 
               fillOpacity={0.2}
@@ -62,7 +62,7 @@ export default function NotFound() {
                   type="primary"
                   size="large"
                   shape="round"
-                  icon={<Home className="w-5 h-5" />}
+                  icon={<FaHome className="w-5 h-5" />}
                   className="h-14 px-8 font-bold border-0 shadow-xl"
                   style={{
                     background: 'linear-gradient(135deg, #ef4444 0%, #ec4899 100%)',
@@ -78,7 +78,7 @@ export default function NotFound() {
                 <Button
                   size="large"
                   shape="round"
-                  icon={<ArrowLeft className="w-5 h-5" />}
+                  icon={<FaArrowLeft className="w-5 h-5" />}
                   className="h-14 px-8 font-bold shadow-xl"
                   style={{
                     background: 'rgba(255, 255, 255, 0.9)',
