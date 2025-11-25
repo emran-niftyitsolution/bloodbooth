@@ -93,6 +93,7 @@ export default function Header() {
     { label: 'Home', href: '/' },
     { label: 'Find Donor', href: '/find-donor' },
     { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   return (
