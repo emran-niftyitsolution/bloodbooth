@@ -7,6 +7,7 @@ import { Button, Input, Select, DatePicker, Checkbox, message } from 'antd';
 import { FaHeart, FaTint, FaEnvelope, FaLock, FaUser, FaPhone, FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
+import { saveCurrentUser } from '@/lib/auth';
 
 const { Option } = Select;
 
@@ -78,11 +79,13 @@ export default function SignupPage() {
 
       // Store auth token and user data
       localStorage.setItem('auth_token', data.token);
-      localStorage.setItem('user_email', data.user.email);
-      localStorage.setItem('user_name', data.user.fullName);
-      if (data.user.bloodType) {
-        localStorage.setItem('blood_type', data.user.bloodType);
-      }
+
+      saveCurrentUser({
+        email: data.user.email,
+        name: data.user.fullName,
+        bloodType: data.user.bloodType,
+        phone: data.user.phone,
+      });
 
       // Show success message
       message.success('Account created successfully! Redirecting to home...');

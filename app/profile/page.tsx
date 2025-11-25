@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Button, Input, Select, DatePicker, message, Progress, Badge } from 'antd';
-import { 
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Button, Input, Select, DatePicker, message, Progress, Badge } from "antd";
+import {
   FaUser,
   FaEnvelope,
   FaPhone,
@@ -19,30 +19,40 @@ import {
   FaTrophy,
   FaCheckCircle,
   FaClock,
-  FaChartLine
-} from 'react-icons/fa';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { isAuthenticated, getCurrentUser } from '@/lib/auth';
-import dayjs from 'dayjs';
+  FaChartLine,
+} from "react-icons/fa";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import dayjs, { type Dayjs } from "dayjs";
+import { isAuthenticated, getCurrentUser, saveCurrentUser, type User } from "@/lib/auth";
 
 const { Option } = Select;
 
+type ProfileFormState = {
+  fullName: string;
+  email: string;
+  phone: string;
+  bloodType: string;
+  dateOfBirth: Dayjs | null;
+  location: string;
+  bio: string;
+};
+
 export default function ProfilePage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
-  
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    bloodType: '',
+
+  const [formData, setFormData] = useState<ProfileFormState>({
+    fullName: "",
+    email: "",
+    phone: "",
+    bloodType: "",
     dateOfBirth: null,
-    location: '',
-    bio: '',
+    location: "",
+    bio: "",
   });
 
   useEffect(() => {
@@ -55,13 +65,13 @@ export default function ProfilePage() {
       const currentUser = getCurrentUser();
       setUser(currentUser);
       setFormData({
-        fullName: currentUser?.name || '',
-        email: currentUser?.email || '',
-        phone: currentUser?.phone || '',
-        bloodType: currentUser?.bloodType || '',
+        fullName: currentUser?.name || "",
+        email: currentUser?.email || "",
+        phone: currentUser?.phone || "",
+        bloodType: currentUser?.bloodType || "",
         dateOfBirth: currentUser?.dateOfBirth ? dayjs(currentUser.dateOfBirth) : null,
-        location: currentUser?.location || 'New York, USA',
-        bio: currentUser?.bio || 'Proud blood donor making a difference in saving lives.',
+        location: currentUser?.location || "New York, USA",
+        bio: currentUser?.bio || "Proud blood donor making a difference in saving lives.",
       });
       setLoading(false);
     };
@@ -73,8 +83,26 @@ export default function ProfilePage() {
     setSaving(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    message.success('Profile updated successfully!');
+
+    const baseUser: User =
+      user ?? {
+        email: formData.email,
+      };
+
+    const updatedUser: User = {
+      ...baseUser,
+      email: formData.email,
+      name: formData.fullName || undefined,
+      phone: formData.phone || undefined,
+      bloodType: formData.bloodType || undefined,
+      location: formData.location || undefined,
+      bio: formData.bio || undefined,
+      dateOfBirth: formData.dateOfBirth ? formData.dateOfBirth.toISOString() : undefined,
+    };
+
+    setUser(updatedUser);
+    saveCurrentUser(updatedUser);
+    message.success("Profile updated successfully!");
     setSaving(false);
     setEditing(false);
   };
@@ -82,13 +110,13 @@ export default function ProfilePage() {
   const handleCancel = () => {
     // Reset form data
     setFormData({
-      fullName: user?.name || '',
-      email: user?.email || '',
-      phone: user?.phone || '',
-      bloodType: user?.bloodType || '',
+      fullName: user?.name || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
+      bloodType: user?.bloodType || "",
       dateOfBirth: user?.dateOfBirth ? dayjs(user.dateOfBirth) : null,
-      location: user?.location || 'New York, USA',
-      bio: user?.bio || 'Proud blood donor making a difference in saving lives.',
+      location: user?.location || "New York, USA",
+      bio: user?.bio || "Proud blood donor making a difference in saving lives.",
     });
     setEditing(false);
   };

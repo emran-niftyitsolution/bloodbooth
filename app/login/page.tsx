@@ -7,6 +7,7 @@ import { Button, Input, Checkbox, Divider, message } from 'antd';
 import { FaHeart, FaTint, FaEnvelope, FaLock, FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
+import { saveCurrentUser } from '@/lib/auth';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -47,11 +48,13 @@ export default function LoginPage() {
       // Store auth token and user data
       const storage = remember ? localStorage : sessionStorage;
       storage.setItem('auth_token', data.token);
-      storage.setItem('user_email', data.user.email);
-      storage.setItem('user_name', data.user.fullName);
-      if (data.user.bloodType) {
-        storage.setItem('blood_type', data.user.bloodType);
-      }
+
+      saveCurrentUser({
+        email: data.user.email,
+        name: data.user.fullName,
+        bloodType: data.user.bloodType,
+        phone: data.user.phone,
+      });
 
       // Show success message
       message.success('Login successful! Redirecting...');

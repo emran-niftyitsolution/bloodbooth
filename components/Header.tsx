@@ -92,7 +92,7 @@ export default function Header() {
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Find Donor', href: '/find-donor' },
-    { label: 'About', href: '/#about' },
+    { label: 'About', href: '/about' },
     { label: 'Process', href: '/#process' },
   ];
 

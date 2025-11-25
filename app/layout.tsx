@@ -1,7 +1,8 @@
+import Header from "@/components/Header";
+import { ConfigProvider } from "antd";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,8 +45,26 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#dc2626",
+            },
+            components: {
+              Steps: {
+                colorPrimary: "#dc2626",
+                colorPrimaryBorder: "#fecdd3",
+                colorTextDescription: "#4b5563",
+                colorTextProcess: "#dc2626",
+                dotCurrentSize: 12,
+                dotSize: 10,
+              },
+            },
+          }}
+        >
+          <Header />
+          {children}
+        </ConfigProvider>
       </body>
     </html>
   );

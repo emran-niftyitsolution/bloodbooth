@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge, Button, Empty, Input, Select, Slider, Switch } from "antd";
+import { Button, Empty, Input, Select, Slider, Switch } from "antd";
 import { motion } from "framer-motion";
 import {
   FaAward,
@@ -569,22 +569,20 @@ export default function FindDonorPage() {
                             animate={{ scale: 1 }}
                             transition={{ delay: 0.2, type: "spring" }}
                           >
-                            <Badge
-                              status={donor.available ? "success" : "default"}
-                              text={
-                                <span
-                                  className={`text-xs font-bold px-3 py-1.5 rounded-full ${
-                                    donor.available
-                                      ? "bg-green-100 text-green-700"
-                                      : "bg-gray-100 text-gray-600"
-                                  }`}
-                                >
-                                  {donor.available
-                                    ? "● Available"
-                                    : "● Unavailable"}
-                                </span>
-                              }
-                            />
+                            <span
+                              className={`inline-flex items-center text-xs font-bold px-3 py-1.5 rounded-full shadow-sm ${
+                                donor.available
+                                  ? "bg-green-50 text-green-700 border border-green-200"
+                                  : "bg-gray-50 text-gray-600 border border-gray-200"
+                              }`}
+                            >
+                              <span
+                                className={`mr-1 h-2 w-2 rounded-full ${
+                                  donor.available ? "bg-green-500" : "bg-gray-400"
+                                }`}
+                              />
+                              {donor.available ? "Available" : "Unavailable"}
+                            </span>
                           </motion.div>
                         </div>
 
