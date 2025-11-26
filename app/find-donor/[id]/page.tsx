@@ -1,5 +1,4 @@
 import { Button } from "antd";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -7,8 +6,10 @@ import {
   FaEnvelope,
   FaLocationArrow,
   FaMapMarkerAlt,
+  FaMars,
   FaPhone,
   FaStar,
+  FaVenus,
 } from "react-icons/fa";
 import { mockDonors } from "../mock-donors";
 
@@ -32,6 +33,12 @@ export default async function DonorProfilePage({ params }: DonorProfileProps) {
     { label: "Distance", value: donor?.distance },
   ];
 
+  const genderIcon = donor?.gender === "female" ? (
+    <FaVenus className="w-12 h-12" />
+  ) : (
+    <FaMars className="w-12 h-12" />
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 via-red-50 to-white">
       <div className="max-w-6xl mx-auto py-16 px-4 sm:px-6 lg:px-8 space-y-10">
@@ -54,12 +61,9 @@ export default async function DonorProfilePage({ params }: DonorProfileProps) {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.2),_transparent_45%)]" />
             <div className="relative space-y-5">
               <div className="relative mx-auto h-36 w-36 overflow-hidden rounded-full border-4 border-white shadow-2xl">
-                <Image
-                  src={donor?.image || ""}
-                  alt={donor?.name}
-                  fill
-                  className="object-cover"
-                />
+                <div className="flex h-full w-full items-center justify-center bg-white/10 text-white text-2xl">
+                  {genderIcon}
+                </div>
               </div>
               <div className="text-center space-y-1">
                 <p className="text-sm uppercase tracking-widest text-white/70">Blood Type</p>
@@ -171,6 +175,35 @@ export default async function DonorProfilePage({ params }: DonorProfileProps) {
                   >
                     View Nearest Center
                   </Button>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-3xl border border-gray-200 bg-white/90 p-6 shadow-lg">
+              <h4 className="text-lg font-bold text-gray-900">Donor Details</h4>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-gray-100 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700">
+                  Gender
+                  <p className="text-xl font-black text-gray-900 mt-1">
+                    {donor?.gender}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-gray-100 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700">
+                  Weight
+                  <p className="text-xl font-black text-gray-900 mt-1">
+                    {donor?.weightKg} kg
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-gray-100 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700">
+                  Last Donation
+                  <p className="text-xl font-black text-gray-900 mt-1">
+                    {donor?.lastDonation}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-gray-100 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700">
+                  Total Donations
+                  <p className="text-xl font-black text-gray-900 mt-1">
+                    {donor?.totalDonations}
+                  </p>
                 </div>
               </div>
             </div>

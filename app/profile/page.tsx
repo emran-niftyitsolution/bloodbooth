@@ -36,6 +36,10 @@ type ProfileFormState = {
   dateOfBirth: Dayjs | null;
   location: string;
   bio: string;
+  gender: "male" | "female" | "";
+  weightKg: number;
+  lastDonation: string;
+  totalDonations: number;
 };
 
 export default function ProfilePage() {
@@ -53,6 +57,10 @@ export default function ProfilePage() {
     dateOfBirth: null,
     location: "",
     bio: "",
+    gender: "",
+    weightKg: 70,
+    lastDonation: "",
+    totalDonations: 0,
   });
 
   useEffect(() => {
@@ -72,6 +80,10 @@ export default function ProfilePage() {
         dateOfBirth: currentUser?.dateOfBirth ? dayjs(currentUser.dateOfBirth) : null,
         location: currentUser?.location || "New York, USA",
         bio: currentUser?.bio || "Proud blood donor making a difference in saving lives.",
+        gender: (currentUser as any)?.gender || "",
+        weightKg: (currentUser as any)?.weightKg || 70,
+        lastDonation: (currentUser as any)?.lastDonation || stats.lastDonation,
+        totalDonations: (currentUser as any)?.totalDonations || stats.totalDonations,
       });
       setLoading(false);
     };
@@ -98,6 +110,10 @@ export default function ProfilePage() {
       location: formData.location || undefined,
       bio: formData.bio || undefined,
       dateOfBirth: formData.dateOfBirth ? formData.dateOfBirth.toISOString() : undefined,
+      gender: formData.gender || undefined,
+      weightKg: formData.weightKg || undefined,
+      lastDonation: formData.lastDonation || undefined,
+      totalDonations: formData.totalDonations || undefined,
     };
 
     setUser(updatedUser);
@@ -117,6 +133,10 @@ export default function ProfilePage() {
       dateOfBirth: user?.dateOfBirth ? dayjs(user.dateOfBirth) : null,
       location: user?.location || "New York, USA",
       bio: user?.bio || "Proud blood donor making a difference in saving lives.",
+      gender: (user as any)?.gender || "",
+      weightKg: (user as any)?.weightKg || 70,
+      lastDonation: (user as any)?.lastDonation || stats.lastDonation,
+      totalDonations: (user as any)?.totalDonations || stats.totalDonations,
     });
     setEditing(false);
   };
@@ -175,6 +195,25 @@ export default function ProfilePage() {
             </div>
           </div>
         </motion.div>
+
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 mb-8">
+          <div className="rounded-2xl border border-gray-200 bg-white/70 p-4 text-center shadow">
+            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">Gender</p>
+            <p className="text-lg font-black text-gray-900 mt-2">{formData.gender || "Not set"}</p>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-white/70 p-4 text-center shadow">
+            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">Weight</p>
+            <p className="text-lg font-black text-gray-900 mt-2">{formData.weightKg} kg</p>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-white/70 p-4 text-center shadow">
+            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">Last Donation</p>
+            <p className="text-lg font-black text-gray-900 mt-2">{formData.lastDonation || stats.lastDonation}</p>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-white/70 p-4 text-center shadow">
+            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">Total Donations</p>
+            <p className="text-lg font-black text-gray-900 mt-2">{formData.totalDonations || stats.totalDonations}</p>
+          </div>
+        </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Left Column - Profile Card */}
@@ -403,6 +442,58 @@ export default function ProfilePage() {
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                     disabled={!editing}
+                    className="rounded-xl"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Gender
+                  </label>
+                  <Select
+                    size="large"
+                    value={formData.gender || undefined}
+                    onChange={(value) => setFormData({ ...formData, gender: value })}
+                    disabled={!editing}
+                    placeholder="Select gender"
+                    className="w-full"
+                  >
+                    <Option value="male">Male</Option>
+                    <Option value="female">Female</Option>
+                  </Select>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Weight (kg)
+                  </label>
+                  <Input
+                    size="large"
+                    type="number"
+                    prefix={<FaHeart className="w-4 h-4 text-gray-400" />}
+                    value={formData.weightKg}
+                    onChange={(e) => setFormData({ ...formData, weightKg: Number(e.target.value) })}
+                    disabled={!editing}
+                    className="rounded-xl"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Last Donation
+                  </label>
+                  <Input
+                    size="large"
+                    value={formData.lastDonation}
+                    disabled
+                    className="rounded-xl"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Total Donations
+                  </label>
+                  <Input
+                    size="large"
+                    value={formData.totalDonations}
+                    disabled
                     className="rounded-xl"
                   />
                 </div>

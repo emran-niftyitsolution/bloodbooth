@@ -1,6 +1,8 @@
 export interface Donor {
   id: string;
   name: string;
+  gender: "male" | "female";
+  weightKg: number;
   bloodType: string;
   location: string;
   city: string;
@@ -18,6 +20,8 @@ export const mockDonors: Donor[] = [
   {
     id: "1",
     name: "John Smith",
+    gender: "male",
+    weightKg: 78,
     bloodType: "O+",
     location: "New York, NY",
     city: "New York",
@@ -34,6 +38,8 @@ export const mockDonors: Donor[] = [
   {
     id: "2",
     name: "Sarah Johnson",
+    gender: "female",
+    weightKg: 62,
     bloodType: "A+",
     location: "Brooklyn, NY",
     city: "New York",
@@ -50,6 +56,8 @@ export const mockDonors: Donor[] = [
   {
     id: "3",
     name: "Michael Chen",
+    gender: "male",
+    weightKg: 82,
     bloodType: "B+",
     location: "Manhattan, NY",
     city: "New York",
@@ -66,6 +74,8 @@ export const mockDonors: Donor[] = [
   {
     id: "4",
     name: "Emily Rodriguez",
+    gender: "female",
+    weightKg: 60,
     bloodType: "AB+",
     location: "Queens, NY",
     city: "New York",
@@ -82,6 +92,8 @@ export const mockDonors: Donor[] = [
   {
     id: "5",
     name: "David Wilson",
+    gender: "male",
+    weightKg: 90,
     bloodType: "O-",
     location: "Bronx, NY",
     city: "New York",
@@ -98,6 +110,8 @@ export const mockDonors: Donor[] = [
   {
     id: "6",
     name: "Lisa Anderson",
+    gender: "female",
+    weightKg: 58,
     bloodType: "A-",
     location: "Staten Island, NY",
     city: "New York",
@@ -112,4 +126,3 @@ export const mockDonors: Donor[] = [
     rating: 4.6,
   },
 ];
-

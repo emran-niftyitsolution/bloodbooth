@@ -8,6 +8,10 @@ export interface User {
   location?: string;
   dateOfBirth?: string;
   bio?: string;
+  gender?: "male" | "female";
+  weightKg?: number;
+  lastDonation?: string;
+  totalDonations?: number;
 }
 
 /**
