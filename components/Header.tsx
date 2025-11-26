@@ -92,6 +92,7 @@ export default function Header() {
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Find Donor", href: "/find-donor" },
+    { label: "Good to Know", href: "/good-to-know" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ];
@@ -115,7 +116,7 @@ export default function Header() {
               >
                 <div className="relative w-12 h-12">
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 blur-xl opacity-50"
+                    className="absolute inset-0 bg-linear-to-r from-red-500 to-pink-500 blur-xl opacity-50"
                     animate={{ opacity: [0.3, 0.6, 0.3] }}
                     transition={{ duration: 3, repeat: Infinity }}
                   />
@@ -128,7 +129,7 @@ export default function Header() {
                     priority
                   />
                 </div>
-                <span className="text-3xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
+                <span className="text-3xl font-black bg-linear-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
                   BloodBooth
                 </span>
               </motion.div>
@@ -147,7 +148,7 @@ export default function Header() {
                     whileHover={{ y: -2 }}
                   >
                     {item.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-pink-500 group-hover:w-full transition-all duration-300" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-red-500 to-pink-500 group-hover:w-full transition-all duration-300" />
                   </motion.span>
                 </Link>
               ))}
@@ -174,7 +175,7 @@ export default function Header() {
                       }}
                       className="relative group"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity" />
+                      <div className="absolute inset-0 bg-linear-to-r from-red-500 to-pink-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity" />
                       <Button
                         type="primary"
                         size="large"
@@ -194,16 +195,6 @@ export default function Header() {
                 </>
               ) : (
                 <div className="flex items-center gap-4">
-                  {user?.bloodType && (
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      className="px-4 py-2 bg-red-100 rounded-full"
-                    >
-                      <span className="text-red-600 font-bold text-sm">
-                        {user.bloodType}
-                      </span>
-                    </motion.div>
-                  )}
                   <Dropdown
                     menu={{ items: userMenuItems }}
                     placement="bottomRight"
@@ -215,7 +206,7 @@ export default function Header() {
                       className="cursor-pointer"
                     >
                       <div className="flex items-center gap-3 px-4 py-2.5 rounded-full hover:bg-white/10 transition-colors">
-                        <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+                        <div className="w-8 h-8 bg-linear-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
                           <FaUser className="w-4 h-4 text-white" />
                         </div>
                         <span className="font-semibold text-gray-700">
@@ -252,7 +243,7 @@ export default function Header() {
                   arrow
                 >
                   <div className="cursor-pointer">
-                    <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                    <div className="w-10 h-10 bg-linear-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                       <FaUser className="w-5 h-5 text-white" />
                     </div>
                   </div>
@@ -298,7 +289,7 @@ export default function Header() {
               {!isLoggedIn && (
                 <Link href="/signup">
                   <div
-                    className="block px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-red-500 to-pink-500 text-white text-center"
+                    className="block px-4 py-3 rounded-xl font-semibold bg-linear-to-r from-red-500 to-pink-500 text-white text-center"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Donate

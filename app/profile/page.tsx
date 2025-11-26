@@ -285,9 +285,10 @@ export default function ProfilePage() {
                 {!editing ? (
                   <Button
                     type="primary"
+                    size="large"
                     icon={<FaEdit className="w-4 h-4" />}
                     onClick={() => setEditing(true)}
-                    className="rounded-xl font-semibold"
+                    className="rounded-2xl px-6 py-3 text-lg font-semibold shadow-lg"
                   >
                     Edit Profile
                   </Button>

@@ -330,7 +330,7 @@ export default function Home() {
                   <Button
                     size="large"
                     shape="round"
-                    icon={<FaUsers className="w-6 h-6" />}
+                    icon={<FaUsers className="w-6 h-6 text-[#dc2626]" />}
                     className="relative h-16 px-10 text-lg font-bold shadow-lg group-hover:shadow-xl transition-shadow"
                     style={{
                       background: "#ffffff",
@@ -339,7 +339,7 @@ export default function Home() {
                     }}
                     href="/find-donor"
                   >
-                    <span className="relative z-10 flex items-center gap-2">
+                    <span className="relative z-10 flex items-center gap-2 text-[#dc2626]">
                       Find Donors
                     </span>
                   </Button>
