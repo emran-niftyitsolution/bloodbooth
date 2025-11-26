@@ -6,7 +6,6 @@ import Image from "next/image";
 import {
   FaArrowRight,
   FaAward,
-  FaCalendarAlt,
   FaChartLine,
   FaCheckCircle,
   FaClock,
@@ -331,16 +330,17 @@ export default function Home() {
                   <Button
                     size="large"
                     shape="round"
-                    icon={<FaCalendarAlt className="w-6 h-6" />}
+                    icon={<FaUsers className="w-6 h-6" />}
                     className="relative h-16 px-10 text-lg font-bold shadow-lg group-hover:shadow-xl transition-shadow"
                     style={{
                       background: "#ffffff",
                       border: "2px solid #e5e7eb",
                       color: "#1f2937",
                     }}
+                    href="/find-donor"
                   >
                     <span className="relative z-10 flex items-center gap-2">
-                      Schedule Appointment
+                      Find Donors
                     </span>
                   </Button>
                 </motion.div>
@@ -369,19 +369,8 @@ export default function Home() {
                     className="object-cover"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/30 to-pink-500/30 mix-blend-multiply" />
                 </div>
 
-                {/* Glassmorphic overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    className="bg-white/10 backdrop-blur-xl p-12 rounded-full border border-white/20 shadow-2xl"
-                  >
-                    <FaHeart className="w-40 h-40 text-white drop-shadow-2xl opacity-40" />
-                  </motion.div>
-                </div>
               </motion.div>
 
               {/* Floating stats cards */}

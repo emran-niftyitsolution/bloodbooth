@@ -3,13 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Button, Input, Select, DatePicker, Checkbox, message } from 'antd';
-import { FaHeart, FaTint, FaEnvelope, FaLock, FaUser, FaPhone, FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
+import { Button, Input, Checkbox, message } from 'antd';
+import { FaHeart, FaTint, FaEnvelope, FaLock, FaUser, FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import { saveCurrentUser } from '@/lib/auth';
-
-const { Option } = Select;
 
 export default function SignupPage() {
   const router = useRouter();
@@ -17,24 +15,27 @@ export default function SignupPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    phone: '',
-    bloodType: '',
-    dateOfBirth: null,
     password: '',
     confirmPassword: '',
     agreeTerms: false,
   });
 
   const handleSignup = async () => {
+    const firstName = formData.firstName.trim();
+    const lastName = formData.lastName.trim();
+    const email = formData.email.trim();
+    const fullName = `${firstName} ${lastName}`.trim();
+
     // Validation
-    if (!formData.fullName || !formData.email || !formData.password) {
+    if (!firstName || !lastName || !email || !formData.password) {
       message.error('Please fill in all required fields');
       return;
     }
 
-    if (!formData.email.includes('@')) {
+    if (!email.includes('@')) {
       message.error('Please enter a valid email address');
       return;
     }
@@ -62,12 +63,9 @@ export default function SignupPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName: formData.fullName,
-          email: formData.email,
+          fullName,
+          email,
           password: formData.password,
-          phone: formData.phone,
-          bloodType: formData.bloodType,
-          dateOfBirth: formData.dateOfBirth,
         }),
       });
 
@@ -83,8 +81,6 @@ export default function SignupPage() {
       saveCurrentUser({
         email: data.user.email,
         name: data.user.fullName,
-        bloodType: data.user.bloodType,
-        phone: data.user.phone,
       });
 
       // Show success message
@@ -143,20 +139,6 @@ export default function SignupPage() {
             transition={{ duration: 0.8 }}
             className="hidden lg:block"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="relative">
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 blur-xl opacity-50"
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-                <FaTint className="w-12 h-12 text-red-500 relative" />
-              </div>
-              <span className="text-4xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
-                BloodBooth
-              </span>
-            </div>
-
             <h1 className="text-5xl font-black text-gray-900 mb-6 leading-tight">
               Become a
               <br />
@@ -199,7 +181,7 @@ export default function SignupPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border-2 border-white/50 p-8 md:p-12 max-h-[90vh] overflow-y-auto">
+            <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border-2 border-white/50 p-8 md:p-12 h-auto">
               <div className="lg:hidden flex items-center gap-3 mb-6 justify-center">
                 <FaTint className="w-8 h-8 text-red-500" />
                 <span className="text-2xl font-black bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">
@@ -211,20 +193,35 @@ export default function SignupPage() {
               <p className="text-gray-600 mb-6">Join our community of heroes</p>
 
               <div className="space-y-4">
-                {/* Full Name */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Full Name
-                  </label>
-                  <Input
-                    size="large"
-                    placeholder="John Doe"
-                    prefix={<FaUser className="w-5 h-5 text-gray-400" />}
-                    value={formData.fullName}
-                    onChange={(e) => updateField('fullName', e.target.value)}
-                    className="h-12 rounded-xl"
-                  />
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      First Name
+                    </label>
+                    <Input
+                      size="large"
+                      placeholder="John"
+                      prefix={<FaUser className="w-5 h-5 text-gray-400" />}
+                      value={formData.firstName}
+                      onChange={(e) => updateField('firstName', e.target.value)}
+                      className="h-12 rounded-xl"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Last Name
+                    </label>
+                    <Input
+                      size="large"
+                      placeholder="Doe"
+                      prefix={<FaUser className="w-5 h-5 text-gray-400" />}
+                      value={formData.lastName}
+                      onChange={(e) => updateField('lastName', e.target.value)}
+                      className="h-12 rounded-xl"
+                    />
+                  </div>
                 </div>
+
 
                 {/* Email */}
                 <div>
@@ -239,54 +236,6 @@ export default function SignupPage() {
                     onChange={(e) => updateField('email', e.target.value)}
                     className="h-12 rounded-xl"
                   />
-                </div>
-
-                {/* Phone */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Phone Number
-                  </label>
-                  <Input
-                    size="large"
-                    placeholder="+1 (555) 000-0000"
-                    prefix={<FaPhone className="w-5 h-5 text-gray-400" />}
-                    value={formData.phone}
-                    onChange={(e) => updateField('phone', e.target.value)}
-                    className="h-12 rounded-xl"
-                  />
-                </div>
-
-                {/* Blood Type & Date of Birth */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Blood Type
-                    </label>
-                    <Select
-                      size="large"
-                      placeholder="Select"
-                      value={formData.bloodType || undefined}
-                      onChange={(value) => updateField('bloodType', value)}
-                      className="w-full"
-                      style={{ height: '48px' }}
-                    >
-                      {['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map(type => (
-                        <Option key={type} value={type}>{type}</Option>
-                      ))}
-                    </Select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Date of Birth
-                    </label>
-                    <DatePicker
-                      size="large"
-                      placeholder="MM/DD/YYYY"
-                      value={formData.dateOfBirth}
-                      onChange={(date) => updateField('dateOfBirth', date)}
-                      className="w-full h-12 rounded-xl"
-                    />
-                  </div>
                 </div>
 
                 {/* Password */}
@@ -304,7 +253,7 @@ export default function SignupPage() {
                         onClick={() => setShowPassword(!showPassword)}
                         className="text-gray-400 hover:text-gray-600"
                       >
-                        {showPassword ? <FaEyeOff className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
+                        {showPassword ? <FaEyeSlash className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
                       </button>
                     }
                     value={formData.password}
@@ -328,7 +277,7 @@ export default function SignupPage() {
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                         className="text-gray-400 hover:text-gray-600"
                       >
-                        {showConfirmPassword ? <FaEyeOff className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
+                        {showConfirmPassword ? <FaEyeSlash className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
                       </button>
                     }
                     value={formData.confirmPassword}

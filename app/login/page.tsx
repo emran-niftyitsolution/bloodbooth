@@ -114,20 +114,6 @@ export default function LoginPage() {
             transition={{ duration: 0.8 }}
             className="hidden lg:block"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="relative">
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 blur-xl opacity-50"
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-                <FaTint className="w-12 h-12 text-red-500 relative" />
-              </div>
-              <span className="text-4xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
-                BloodBooth
-              </span>
-            </div>
-
             <h1 className="text-5xl font-black text-gray-900 mb-6 leading-tight">
               Welcome Back,
               <br />

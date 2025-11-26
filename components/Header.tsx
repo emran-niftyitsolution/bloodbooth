@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button, Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import { 
   FaHeart, 
-  FaTint,
   FaSignOutAlt,
   FaUser,
   FaCog,
@@ -113,13 +113,20 @@ export default function Header() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <div className="relative">
-                  <motion.div 
+                <div className="relative w-12 h-12">
+                  <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 blur-xl opacity-50"
                     animate={{ opacity: [0.3, 0.6, 0.3] }}
                     transition={{ duration: 3, repeat: Infinity }}
                   />
-                  <FaTint className="w-10 h-10 text-red-500 relative drop-shadow-lg" />
+                  <Image
+                    src="/logo.svg"
+                    alt="BloodBooth logo"
+                    width={48}
+                    height={48}
+                    className="relative z-10 drop-shadow-lg"
+                    priority
+                  />
                 </div>
                 <span className="text-3xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
                   BloodBooth
@@ -173,7 +180,7 @@ export default function Header() {
                           color: '#ffffff',
                         }}
                       >
-                        Sign Up
+                        Donate
                       </Button>
                     </motion.div>
                   </Link>
@@ -274,7 +281,7 @@ export default function Header() {
                     className="block px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-red-500 to-pink-500 text-white text-center"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    Sign Up
+                    Donate
                   </div>
                 </Link>
               )}
