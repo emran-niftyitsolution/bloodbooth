@@ -173,14 +173,6 @@ export default function ProfilePage() {
                 Manage your account and track your donation journey
               </p>
             </div>
-            <Link href="/dashboard">
-              <Button
-                size="large"
-                className="rounded-xl font-semibold"
-              >
-                Back to Dashboard
-              </Button>
-            </Link>
           </div>
         </motion.div>
 
@@ -204,7 +196,6 @@ export default function ProfilePage() {
                   <button className="absolute bottom-0 right-0 bg-red-500 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-colors">
                     <FaCamera className="w-5 h-5 text-white" />
                   </button>
-                  <div className="absolute -bottom-1 -right-1 bg-green-500 w-8 h-8 rounded-full border-4 border-white" />
                 </div>
                 
                 <h2 className="text-2xl font-black text-gray-900 mb-1">

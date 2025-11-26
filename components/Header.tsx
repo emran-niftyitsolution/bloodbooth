@@ -1,27 +1,31 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { Button, Dropdown } from 'antd';
-import type { MenuProps } from 'antd';
-import { 
-  FaHeart, 
-  FaSignOutAlt,
-  FaUser,
-  FaCog,
-  FaChartLine,
+import { getCurrentUser, isAuthenticated, logout } from "@/lib/auth";
+import type { MenuProps } from "antd";
+import { Button, Dropdown } from "antd";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import {
   FaBars,
-  FaTimes
-} from 'react-icons/fa';
-import { isAuthenticated, getCurrentUser, logout } from '@/lib/auth';
+  FaChartLine,
+  FaCog,
+  FaHeart,
+  FaSignOutAlt,
+  FaTimes,
+  FaUser,
+} from "react-icons/fa";
 
 export default function Header() {
   const pathname = usePathname();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<{ email: string; name?: string; bloodType?: string } | null>(null);
+  const [user, setUser] = useState<{
+    email: string;
+    name?: string;
+    bloodType?: string;
+  } | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Check authentication status
@@ -37,52 +41,48 @@ export default function Header() {
     checkAuth();
 
     // Listen for storage changes (login/logout in other tabs)
-    window.addEventListener('storage', checkAuth);
-    return () => window.removeEventListener('storage', checkAuth);
+    window.addEventListener("storage", checkAuth);
+    return () => window.removeEventListener("storage", checkAuth);
   }, []);
 
   // User dropdown menu
-  const userMenuItems: MenuProps['items'] = [
+  const userMenuItems: MenuProps["items"] = [
     {
-      key: 'profile',
+      key: "profile",
       label: (
         <div className="flex items-center gap-3 py-2">
           <FaUser className="w-4 h-4" />
           <div>
-            <div className="font-semibold">{user?.name || 'User'}</div>
+            <div className="font-semibold">{user?.name || "User"}</div>
             <div className="text-xs text-gray-500">{user?.email}</div>
           </div>
         </div>
       ),
     },
     {
-      type: 'divider',
+      type: "divider",
     },
     {
-      key: 'dashboard',
-      label: (
-        <Link href="/dashboard">Dashboard</Link>
-      ),
+      key: "dashboard",
+      label: <Link href="/dashboard">Dashboard</Link>,
       icon: <FaChartLine className="w-4 h-4" />,
     },
     {
-      key: 'myprofile',
-      label: (
-        <Link href="/profile">My Profile</Link>
-      ),
+      key: "myprofile",
+      label: <Link href="/profile">My Profile</Link>,
       icon: <FaUser className="w-4 h-4" />,
     },
     {
-      key: 'settings',
-      label: 'Settings',
+      key: "settings",
+      label: "Settings",
       icon: <FaCog className="w-4 h-4" />,
     },
     {
-      type: 'divider',
+      type: "divider",
     },
     {
-      key: 'logout',
-      label: 'Logout',
+      key: "logout",
+      label: "Logout",
       icon: <FaSignOutAlt className="w-4 h-4" />,
       danger: true,
       onClick: logout,
@@ -90,15 +90,15 @@ export default function Header() {
   ];
 
   const navItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Find Donor', href: '/find-donor' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
+    { label: "Home", href: "/" },
+    { label: "Find Donor", href: "/find-donor" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
     <>
-      <motion.nav 
+      <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
@@ -108,7 +108,7 @@ export default function Header() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <Link href="/">
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-3 cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400 }}
@@ -140,7 +140,9 @@ export default function Header() {
                 <Link key={item.label} href={item.href}>
                   <motion.span
                     className={`text-base font-semibold relative group cursor-pointer transition-all ${
-                      pathname === item.href ? 'text-red-500' : 'text-gray-700 hover:text-red-500'
+                      pathname === item.href
+                        ? "text-red-500"
+                        : "text-gray-700 hover:text-red-500"
                     }`}
                     whileHover={{ y: -2 }}
                   >
@@ -149,35 +151,40 @@ export default function Header() {
                   </motion.span>
                 </Link>
               ))}
-              
+
               {/* Auth Buttons */}
               {!isLoggedIn ? (
                 <>
                   <Link href="/login">
-                    <motion.span 
-                      whileHover={{ y: -2 }} 
+                    <motion.span
+                      whileHover={{ y: -2 }}
                       className="text-gray-700 hover:text-red-500 transition-all font-semibold text-base cursor-pointer inline-block"
                     >
                       Sign In
                     </motion.span>
                   </Link>
                   <Link href="/signup">
-                    <motion.div 
-                      whileHover={{ scale: 1.05 }} 
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.96 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 25,
+                      }}
                       className="relative group"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity" />
-                      <Button 
+                      <Button
                         type="primary"
                         size="large"
                         shape="round"
                         icon={<FaHeart className="w-5 h-5" />}
                         className="relative h-14 px-9 font-bold text-base shadow-lg border-0"
                         style={{
-                          background: 'linear-gradient(135deg, #dc2626 0%, #e11d48 50%, #ec4899 100%)',
-                          color: '#ffffff',
+                          background:
+                            "linear-gradient(135deg, #dc2626 0%, #e11d48 50%, #ec4899 100%)",
+                          color: "#ffffff",
                         }}
                       >
                         Donate
@@ -197,18 +204,22 @@ export default function Header() {
                       </span>
                     </motion.div>
                   )}
-                  <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
+                  <Dropdown
+                    menu={{ items: userMenuItems }}
+                    placement="bottomRight"
+                    arrow
+                  >
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="cursor-pointer"
                     >
-                      <div className="flex items-center gap-3 px-4 py-2.5 bg-white rounded-full border-2 border-gray-200 hover:border-red-300 transition-colors shadow-sm">
+                      <div className="flex items-center gap-3 px-4 py-2.5 rounded-full hover:bg-white/10 transition-colors">
                         <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center">
                           <FaUser className="w-4 h-4 text-white" />
                         </div>
                         <span className="font-semibold text-gray-700">
-                          {user?.name?.split(' ')[0] || 'User'}
+                          {user?.name?.split(" ")[0] || "User"}
                         </span>
                       </div>
                     </motion.div>
@@ -227,14 +238,19 @@ export default function Header() {
                     shape="round"
                     className="font-bold border-0"
                     style={{
-                      background: 'linear-gradient(135deg, #dc2626 0%, #e11d48 50%, #ec4899 100%)',
+                      background:
+                        "linear-gradient(135deg, #dc2626 0%, #e11d48 50%, #ec4899 100%)",
                     }}
                   >
                     Sign In
                   </Button>
                 </Link>
               ) : (
-                <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
+                <Dropdown
+                  menu={{ items: userMenuItems }}
+                  placement="bottomRight"
+                  arrow
+                >
                   <div className="cursor-pointer">
                     <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                       <FaUser className="w-5 h-5 text-white" />
@@ -246,7 +262,11 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 text-gray-700 hover:text-red-500 transition-colors"
               >
-                {mobileMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
+                {mobileMenuOpen ? (
+                  <FaTimes className="w-6 h-6" />
+                ) : (
+                  <FaBars className="w-6 h-6" />
+                )}
               </button>
             </div>
           </div>
@@ -256,7 +276,7 @@ export default function Header() {
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-xl"
           >
@@ -266,8 +286,8 @@ export default function Header() {
                   <div
                     className={`block px-4 py-3 rounded-xl font-semibold transition-all ${
                       pathname === item.href
-                        ? 'bg-red-50 text-red-500'
-                        : 'text-gray-700 hover:bg-gray-50'
+                        ? "bg-red-50 text-red-500"
+                        : "text-gray-700 hover:bg-gray-50"
                     }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -295,4 +315,3 @@ export default function Header() {
     </>
   );
 }
-
