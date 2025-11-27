@@ -196,25 +196,6 @@ export default function ProfilePage() {
           </div>
         </motion.div>
 
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 mb-8">
-          <div className="rounded-2xl border border-gray-200 bg-white/70 p-4 text-center shadow">
-            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">Gender</p>
-            <p className="text-lg font-black text-gray-900 mt-2">{formData.gender || "Not set"}</p>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white/70 p-4 text-center shadow">
-            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">Weight</p>
-            <p className="text-lg font-black text-gray-900 mt-2">{formData.weightKg} kg</p>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white/70 p-4 text-center shadow">
-            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">Last Donation</p>
-            <p className="text-lg font-black text-gray-900 mt-2">{formData.lastDonation || stats.lastDonation}</p>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white/70 p-4 text-center shadow">
-            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">Total Donations</p>
-            <p className="text-lg font-black text-gray-900 mt-2">{formData.totalDonations || stats.totalDonations}</p>
-          </div>
-        </div>
-
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Left Column - Profile Card */}
           <div className="lg:col-span-1">

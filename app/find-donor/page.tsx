@@ -19,8 +19,25 @@ import {
 } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { mockDonors } from "./mock-donors";
+import { useEffect, useState } from "react";
+
+type DonorRecord = {
+  _id: string;
+  name: string;
+  gender: "male" | "female";
+  weightKg: number;
+  bloodType: string;
+  location: string;
+  city: string;
+  distance: string;
+  phone: string;
+  email: string;
+  lastDonation: string;
+  totalDonations: number;
+  available: boolean;
+  rating: number;
+  image?: string;
+};
 
 const { Option } = Select;
 
@@ -30,6 +47,9 @@ export default function FindDonorPage() {
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [showAvailableOnly, setShowAvailableOnly] = useState(false);
   const [maxDistance, setMaxDistance] = useState(20);
+  const [donors, setDonors] = useState<DonorRecord[]>([]);
+  const [loadingDonors, setLoadingDonors] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
